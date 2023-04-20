@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Modern Business</title>
+        <title>비버 </title>
 	<!--  css, favicon 자리  -->
 	<c:import url="./temp/style.jsp"></c:import>
     </head>
