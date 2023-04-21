@@ -13,8 +13,6 @@
        <c:import url="../temp/style.jsp"></c:import>
        <!-- css & favicon  -->
        
-  	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -36,16 +34,34 @@
                                 <form id="contactForm" action="./join" method="post" enctype="multipart/form-data">
                                     <!-- Title input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="userName" name="userName" type="text" placeholder="Enter userName..." data-sb-validations="required" />
+                                        <input class="form-control" id="userName" name="userName" type="text" required="required" placeholder="Enter userName..." data-sb-validations="required" />
                                         <label for="userName">ID</label>
-                                        <div class="invalid-feedback titleRe">제목이 없습니다.</div>
+                                        <div class="feedback userNameRe"></div>
                                     </div>
                                     <!-- writer address input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="password" name="password" type="text"  placeholder=" " data-sb-validations="required,email" />
+                                        <input class="form-control" id="password" name="password" type="password" required="required"  placeholder=" " data-sb-validations="required,email" />
                                         <label for="password">Password </label>
+                                        <div class="feedback passwordRe"></div>
+                                        
                                     </div>
-                                                                                                           
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="password2" name="password2" type="password" required="required"  placeholder=" " data-sb-validations="required,email" />
+                                        <label for="password2">Password 확인  </label>
+                                    </div>                                                                                                           
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="name" name="name" type="text" required="required" placeholder=" " data-sb-validations="required,email" />
+                                        <label for="name">이름 </label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="email" name="email" type="email" required="required"  placeholder=" " data-sb-validations="required,email" />
+                                        <label for="email">email </label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="birth" name="birth" type="date"  placeholder=" " data-sb-validations="required,email" />
+                                        <label for="birth">생일 </label>
+                                    </div>                                    
+                                    
                                     <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button></div>
                                 </form>
@@ -57,9 +73,11 @@
  
  
  
-<!— footer 적용해야함 —> 
+
 <c:import url ="../temp/footer.jsp"></c:import>
-<!— footer 적용 끝 —>
-	<script type="text/javascript" src="../js/boardForm.js"></script>
+
+	<script type="text/javascript" src="/js/joinFormCheck.js"></script>
+	
+	
 </body>
 </html>

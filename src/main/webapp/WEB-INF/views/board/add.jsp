@@ -13,10 +13,6 @@
        <c:import url="../temp/style.jsp"></c:import>
        <!-- css & favicon  -->
        
-  	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	
-	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 	
     </head>
     <body class="d-flex flex-column h-100">

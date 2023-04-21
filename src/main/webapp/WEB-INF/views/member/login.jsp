@@ -13,8 +13,6 @@
        <c:import url="../temp/style.jsp"></c:import>
        <!-- css & favicon  -->
        
-  	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -58,9 +56,7 @@
  
  
  
-<!— footer 적용해야함 —> 
 <c:import url ="../temp/footer.jsp"></c:import>
-<!— footer 적용 끝 —>
 	<script type="text/javascript" src="../js/boardForm.js"></script>
 </body>
 </html>

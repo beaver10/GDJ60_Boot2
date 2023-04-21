@@ -33,8 +33,12 @@
                             <li class="nav-item"><a class="nav-link" href="/member/join">Join</a></li>
                             </c:when>
 							<c:otherwise>
-                            <li class="nav-item"><a class="nav-link" href="/member/logout">Logout</a></li>
                             <li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/member/logout">Logout</a></li>
+	                            <c:if test="${member.getRoleVOs().get(0).getNum() eq 1}">
+	                            	 <li class="nav-item"><a class="nav-link" href="/member/admin">Admin</a></li>
+	                            </c:if>
+                            
 							</c:otherwise>
                             </c:choose>
                         </ul>

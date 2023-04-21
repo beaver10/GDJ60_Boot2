@@ -1,6 +1,6 @@
 package com.iu.base.member;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class MemberVO {
 	private String name;
 	private String email;
 	private Date birth;
-	private Boolean enabled;
+	private boolean enabled;
 	
 	private List<RoleVO> roleVOs;
 

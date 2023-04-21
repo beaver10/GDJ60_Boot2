@@ -22,8 +22,8 @@
 		<section class="bg-light py-5">
 			<div class="container px-5 my-5">
 				<div class="text-center mb-5">
-					<h1 class="fw-bolder">🚨${board}</h1>
-					<p class="lead fw-normal text-muted mb-0">공지사항입니다. 지키지 못할시 죽음뿐.</p>
+					<h1 class="fw-bolder">${board}</h1>
+					<p class="lead fw-normal text-muted mb-0">자유롭게..쓰세요...</p>
 				</div>
 
 				<div>
