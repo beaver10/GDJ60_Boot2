@@ -38,9 +38,15 @@
 	                            <c:if test="${member.getRoleVOs().get(0).getNum() eq 1}">
 	                            	 <li class="nav-item"><a class="nav-link" href="/member/admin">Admin</a></li>
 	                            </c:if>
-                            
 							</c:otherwise>
                             </c:choose>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">lang</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="/?lang_opt=ko">🇰🇷 KR</a></li>
+                                    <li><a class="dropdown-item" href="/?lang_opt=en">🇺🇲 EN</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>

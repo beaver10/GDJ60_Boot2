@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
  <!DOCTYPE html>
 <html>    
 <head>
@@ -32,19 +33,18 @@
                         </div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form id="contactForm" action="./add" method="post" enctype="multipart/form-data">
+                                <form:form id="contactForm" action="./add" cssClass="" modelAttribute="boardVO" method="post" enctype="multipart/form-data">
                                     <!-- Title input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="title" name="title" type="text" placeholder="Enter title..." data-sb-validations="required" />
+                                        <form:input path="title" cssClass="form-control" id="title"/>
                                         <label for="title">제목 </label>
-                                        <div class="invalid-feedback titleRe">제목이 없습니다.</div>
+										<form:errors path="title" cssStyle="color:red" cssClass="is-invalid"></form:errors>
                                     </div>
                                     <!-- writer address input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="writer" name="writer" type="text"  placeholder=" " data-sb-validations="required,email" />
+                                        <form:input path="writer" id="writer" cssClass="form-control"/>
                                         <label for="writer">작성자 </label>
-                                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+    									<form:errors path="writer" cssStyle="color:red" cssClass="is-invalid"></form:errors>
                                     </div>
                                     <!-- Message input-->
                                     <div class="form-floating mb-2">
@@ -63,7 +63,7 @@
                                     
                                     <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button></div>
-                                </form>
+                                    </form:form>
                             </div>
                         </div>
                     </div>

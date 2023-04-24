@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+ <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
  <!DOCTYPE html>
 <html>    
 <head>
@@ -31,40 +32,46 @@
                         </div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form id="contactForm" action="./join" method="post" enctype="multipart/form-data">
+                           		 <form:form id="contactForm" modelAttribute="memberVO" method="post">
                                     <!-- Title input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="userName" name="userName" type="text" required="required" placeholder="Enter userName..." data-sb-validations="required" />
+                                        <form:input path="userName" id="userName" cssClass="form-control" required="required"/>
                                         <label for="userName">ID</label>
                                         <div class="feedback userNameRe"></div>
+                                        <form:errors path="userName" cssStyle="color:red"></form:errors>
                                     </div>
                                     <!-- writer address input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="password" name="password" type="password" required="required"  placeholder=" " data-sb-validations="required,email" />
+                                        <form:password path="password" id="password" cssClass="form-control" required="required"/>
                                         <label for="password">Password </label>
                                         <div class="feedback passwordRe"></div>
+                                        <form:errors path="password" cssStyle="color:red"></form:errors>
                                         
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="password2" name="password2" type="password" required="required"  placeholder=" " data-sb-validations="required,email" />
+                                        <form:password cssClass="form-control" id="password2" path="password2" required="required" />
                                         <label for="password2">Password 확인  </label>
+                                        <form:errors path="password2" cssStyle="color:red"></form:errors>                                        
                                     </div>                                                                                                           
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" name="name" type="text" required="required" placeholder=" " data-sb-validations="required,email" />
+                                    	<form:input path="name" id="name" cssClass="form-control"/>
                                         <label for="name">이름 </label>
+                                        <form:errors path="name" cssStyle="color:red"></form:errors>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="email" name="email" type="email" required="required"  placeholder=" " data-sb-validations="required,email" />
+                                        <form:input cssClass="form-control" path="email" id="email"/>
                                         <label for="email">email </label>
+                                        <form:errors path="email" cssStyle="color:red"></form:errors>                                
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="birth" name="birth" type="date"  placeholder=" " data-sb-validations="required,email" />
+                                        <input class="form-control" id="birth" name="birth" type="date"/>
                                         <label for="birth">생일 </label>
+                                        <form:errors path="birth" cssStyle="color:red"></form:errors>                                                                        
                                     </div>                                    
                                     
                                     <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button></div>
-                                </form>
+                                </form:form>
                             </div>
                         </div>
                     </div>
@@ -76,8 +83,8 @@
 
 <c:import url ="../temp/footer.jsp"></c:import>
 
-	<script type="text/javascript" src="/js/joinFormCheck.js"></script>
-	
+<!-- 	<script type="text/javascript" src="/js/joinFormCheck.js"></script>
+ -->	
 	
 </body>
 </html>
