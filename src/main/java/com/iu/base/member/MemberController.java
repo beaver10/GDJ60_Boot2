@@ -1,5 +1,6 @@
 package com.iu.base.member;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,8 +70,14 @@ public class MemberController {
 	public ModelAndView getLogout(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
+		
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+						
+		int result = memberService.setLastTime(memberVO);
+		
 		session.invalidate();
 		
+			
 		mv.setViewName("redirect:../");
 		
 		return mv;
@@ -125,5 +133,6 @@ public class MemberController {
 		
 	}
 	
+
 	
 }

@@ -5,6 +5,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.iu.base.member.MemberDAO">
 
+<select id="getMemberBirth" resultType="MemberVO">
+	SELECT NAME, EMAIL FROM MEMBER
+	WHERE DAYOFYEAR(BIRTH) = DAYOFYEAR(NOW())
+</select>
+
+<update id="setEnabledMember">
+	<![CDATA[
+		UPDATE MEMBER SET ENABLED = 0
+		WHERE LASTTIME <= now()-INTERVAL 3 DAY
+	]]>
+</update>
+
+<update id="setLastTime" parameterType="MemberVO">
+	UPDATE MEMBER SET LASTTIME =now() WHERE USERNAME = #{userName}
+</update>
+
+<select id="getMemberList" resultType="MemberVO">
+	SELECT * FROM MEMBER
+</select>
+
+
 <select id="idDuplicateCheck" resultType="MemberVO" parameterType="MemberVO">
 	SELECT USERNAME FROM MEMBER WHERE USERNAME=#{userName}
 </select>

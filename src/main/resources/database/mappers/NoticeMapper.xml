@@ -5,7 +5,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.iu.base.board.notice.NoticeDAO">
 
-
 	<sql id="search">
 		<where>
 			<if test="kind=='title'">
