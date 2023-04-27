@@ -33,4 +33,7 @@ public interface MemberDAO {
 	//오늘 생일인 사람 가져오기 
 	public List<MemberVO> getMemberBirth ()throws Exception;
 	
+	//가입한 사람의 ID, email로 회원 정보 찾고 DB에 업데이트 
+	public int setFindPassword(MemberVO memberVO)throws Exception;
+	
 }

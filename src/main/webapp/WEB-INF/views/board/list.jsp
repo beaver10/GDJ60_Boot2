@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +52,9 @@
 						</tbody>
 					</table>
 					<nav aria-label="Page navigation example">
+					<sec:authorize access="hasRole('ADMIN')"> 
 					<a class="btn btn-primary " href="./add">글쓰기 </a>
+					</sec:authorize>
 						<ul class="pagination" style="justify-content: center">
 							<li class="page-item ${pager.page eq 1 ?'disabled':''}"><a
 								class="page-link"

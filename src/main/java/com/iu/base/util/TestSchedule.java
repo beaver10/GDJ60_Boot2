@@ -29,7 +29,7 @@ public class TestSchedule {
 	private NoticeDAO noticeDAO;
 	
 	@Autowired
-	private MailService mailService;
+	private MailManager mailManager;
 	
 
 	
@@ -82,14 +82,14 @@ public class TestSchedule {
 		noticeDAO.setInsert(noticeVO);
 		
 	}
-	
-	@Scheduled(cron = " 30 54 * * * * ")
-	public void sendMail()throws Exception{
-		
-		mailService.sendMail();
-		
-		
-	}
+//	
+//	//@Scheduled(cron = " 30 54 * * * * ")
+//	public void sendMail()throws Exception{
+//		
+//		mailManager.sendMail();
+//		
+//		
+//	}
 	
 	
 	

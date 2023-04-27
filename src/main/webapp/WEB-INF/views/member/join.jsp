@@ -35,10 +35,10 @@
                            		 <form:form id="contactForm" modelAttribute="memberVO" method="post">
                                     <!-- Title input-->
                                     <div class="form-floating mb-3">
-                                        <form:input path="userName" id="userName" cssClass="form-control" required="required"/>
+                                        <form:input path="username" id="username" cssClass="form-control" required="required"/>
                                         <label for="userName">ID</label>
-                                        <div class="feedback userNameRe"></div>
-                                        <form:errors path="userName" cssStyle="color:red"></form:errors>
+                                        <div class="feedback usernameRe"></div>
+                                        <form:errors path="username" cssStyle="color:red"></form:errors>
                                     </div>
                                     <!-- writer address input-->
                                     <div class="form-floating mb-3">

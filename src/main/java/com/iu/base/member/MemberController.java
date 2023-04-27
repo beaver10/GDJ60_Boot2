@@ -2,13 +2,17 @@ package com.iu.base.member;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.mail.Message;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +30,55 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+
+	
+	@GetMapping("findPassword")
+	public ModelAndView setFindPassword() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/findPassword");
+		return mv;
+	}
+	
+	@PostMapping("findPassword")
+	public ModelAndView setFindPassword(MemberVO memberVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		int result = memberService.setFindPassword(memberVO);
+		log.error("정답은???{}",result);
+		
+		if(result == 0) {
+//			mailService.sendMail(memberVO);
+			mv.setViewName("common/result");
+			mv.addObject("message", "사용자가 없습니다.");
+		}else {
+			mv.setViewName("common/result");
+			mv.addObject("message", "메일이 발송되었습니다.");
+			mv.addObject("url", "./login");
+		}
+		return mv;
+	}
+	
+	
+	@GetMapping("info")
+	public void info(HttpSession session) {
+		log.error("=============login info");
+//		Enumeration<String> names = session.getAttributeNames();
+//		while(names.hasMoreElements()) {
+//			log.error("========={}==========", names.nextElement());
+//		}
+		Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		log.error("==========================={}",obj);
+		SecurityContextImpl contextImpl = (SecurityContextImpl) obj;
+		Authentication authentication = contextImpl.getAuthentication();
+		
+		
+		log.error("========NAME{}",authentication.getName());
+		log.error("========DETAIL{}",authentication.getDetails());
+		log.error("========PRINCIPAL{}",authentication.getPrincipal());
+
+		
+	}
 	
 	
 	@GetMapping("admin")
@@ -49,22 +102,22 @@ public class MemberController {
 		
 	}
 	
-	@PostMapping("login")
-	public ModelAndView getLogin(MemberVO memberVO, HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		memberVO = memberService.getLogin(memberVO);
-		
-		mv.setViewName("redirect:./login");
-		
-		if(memberVO!=null) {
-			session.setAttribute("member", memberVO);
-			mv.setViewName("redirect:../");
-		}
-		
-		return mv;
-	}
-	
+//	@PostMapping("login")
+//	public ModelAndView getLogin(MemberVO memberVO, HttpSession session) throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		
+//		memberVO = memberService.getLogin(memberVO);
+//		
+//		mv.setViewName("redirect:./login");
+//		
+//		if(memberVO!=null) {
+//			session.setAttribute("member", memberVO);
+//			mv.setViewName("redirect:../");
+//		}
+//		
+//		return mv;
+//	}
+//	
 	
 	@GetMapping("logout")
 	public ModelAndView getLogout(HttpSession session) throws Exception{

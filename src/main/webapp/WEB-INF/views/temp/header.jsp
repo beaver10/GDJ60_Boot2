@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    
     
 
            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -27,19 +29,20 @@
                                     <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
                                 </ul>
                             </li>
-                            <c:choose>
-                            <c:when test="${empty member}">
+
+                            <sec:authorize access="!isAuthenticated()">
                             <li class="nav-item"><a class="nav-link" href="/member/login">Login</a></li>
                             <li class="nav-item"><a class="nav-link" href="/member/join">Join</a></li>
-                            </c:when>
-							<c:otherwise>
+                            </sec:authorize>
+                            <sec:authorize access="isAuthenticated()">
                             <li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
                             <li class="nav-item"><a class="nav-link" href="/member/logout">Logout</a></li>
-	                            <c:if test="${member.getRoleVOs().get(0).getNum() eq 1}">
-	                            	 <li class="nav-item"><a class="nav-link" href="/member/admin">Admin</a></li>
-	                            </c:if>
-							</c:otherwise>
-                            </c:choose>
+                            </sec:authorize>
+<%-- 	                            <c:if test="${member.getRoleVOs().get(0).getNum() eq 1}"> --%>
+							<sec:authorize access="hasRole('ADMIN')">
+                            	 <li class="nav-item"><a class="nav-link" href="/member/admin">Admin</a></li>
+	                        </sec:authorize>
+<%-- 	                            </c:if> --%>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">lang</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
