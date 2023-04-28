@@ -1,5 +1,8 @@
 package com.iu.base.config;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,9 +12,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.iu.base.security.UserLogoutSuccessHandler;
+import com.iu.base.security.UserSuccessHandler;
+
 @Configuration
 //@EnableWebSecurity
 public class SecurityConfig {
+	
+	@Autowired
+	private UserSuccessHandler userSuccessHandler;
+	
+	@Autowired
+	private UserLogoutSuccessHandler userLogoutSuccessHandler;
 
 	@Bean
 	WebSecurityCustomizer webSecurityConfig() {
@@ -52,12 +64,15 @@ public class SecurityConfig {
 				.and()
 			.formLogin()
 				.loginPage("/member/login")
-				.defaultSuccessUrl("/")
+//				.defaultSuccessUrl("/")
+				.successHandler(userSuccessHandler)
 				.failureUrl("/member/login")
 				.permitAll()
 				.and()
 			.logout()
-				.logoutUrl("/logout")
+				.logoutUrl("/member/logout")
+				//.logoutSuccessUrl("/")
+				.logoutSuccessHandler(userLogoutSuccessHandler)
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")
 				.permitAll()

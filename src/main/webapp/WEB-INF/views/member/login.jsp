@@ -34,21 +34,28 @@
                                 <form id="contactForm" action="./login" method="post" enctype="multipart/form-data">
                                     <!-- Title input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="username" name="username" type="text" placeholder="Enter userName..." data-sb-validations="required" />
+                                        <input class="form-control" id="username" name="username" value="${cookie.remember.value}" type="text" placeholder="Enter userName..." data-sb-validations="required" />
                                         <label for="username">ID</label>
                                         <div class="invalid-feedback titleRe">제목이 없습니다.</div>
                                     </div>
                                     <!-- writer address input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="password" name="password" type="text"  placeholder=" " data-sb-validations="required,email" />
+                                        <input class="form-control" id="password" name="password" type="password"  placeholder=" " data-sb-validations="required,email" />
                                         <label for="password">Password </label>
                                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                                     </div>
+                                    
+                                    <div class="form-floating mb-3">
+                                        <input class="" id="remember" name="remember" type="checkbox" value="remember" placeholder=" " data-sb-validations="required,email" />
+                                         ID 기억하기 
+                                    </div>             
+                                    
+                                                           
                                     <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button></div>
                                 </form>
-                               
+                               <br>
                                 <a class="text-muted" href="./findPassword">비밀번호 찾기</a>
                                 
                             </div>

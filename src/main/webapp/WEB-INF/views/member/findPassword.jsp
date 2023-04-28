@@ -25,7 +25,7 @@
                     <!-- Contact form-->
                     <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
                         <div class="text-center mb-5">
-                            <div class="feature bg-gradient text-white rounded-3 mb-3" style="font-size: 50px">🔑</div>
+                            <div class="feature bg-gradient text-white rounded-3 mb-3" style="font-size: 50px">🤐</div>
                             <h1 class="fw-bolder">비밀번호 찾기 </h1>
                             <p class="lead fw-normal text-muted mb-0">아이디와 이메일을 입력하세요 </p>
                         </div>
