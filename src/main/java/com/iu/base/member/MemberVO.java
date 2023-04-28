@@ -41,6 +41,8 @@ public class MemberVO implements UserDetails{
 	
 	@Past
 	private Date birth;
+	
+	private boolean enabled;
 
 	private Date lastTime;
 	
@@ -108,7 +110,7 @@ public class MemberVO implements UserDetails{
 		// 계정 사용 여부 
 		// true : 계정 활성화
 		// false : 계정 비활성화, 로그인 안됨
-		return true;
+		return this.enabled;
 	}
 
 }

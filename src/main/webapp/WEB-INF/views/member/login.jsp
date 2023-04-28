@@ -24,10 +24,13 @@
                 <div class="container px-5">
                     <!-- Contact form-->
                     <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
-                        <div class="text-center mb-5">
+                        <div class="text-center mb-4">
                             <div class="feature bg-gradient text-white rounded-3 mb-3" style="font-size: 50px">🔑</div>
                             <h1 class="fw-bolder">로그인 </h1>
                             <p class="lead fw-normal text-muted mb-0">아이디와 패스워드를 입력하세요 </p>
+                            <c:if test="${not empty param.errorMessage}">
+                            	<p class="text-center mt-3" style="color:red">${param.errorMessage}</p>
+                            </c:if>
                         </div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
@@ -68,5 +71,8 @@
  
 <c:import url ="../temp/footer.jsp"></c:import>
 	<script type="text/javascript" src="../js/boardForm.js"></script>
+	<script type="text/javascript">
+	history.replaceState({}, null, location.pathname)
+	</script>
 </body>
 </html>

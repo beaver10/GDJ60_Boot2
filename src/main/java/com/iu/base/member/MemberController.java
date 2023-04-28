@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 
 	
@@ -62,7 +66,20 @@ public class MemberController {
 	
 	@GetMapping("info")
 	public void info(HttpSession session) {
-		log.error("=============login info");
+		
+		String pw = "222222";
+		
+		MemberVO memberVO = (MemberVO) memberService.loadUserByUsername("user2");
+		
+		log.error(";;;;;;;{}",memberVO.getPassword()) ;
+		log.error(";;;;;;;{}",passwordEncoder.encode(pw)) ;
+		
+		
+		boolean check = passwordEncoder.matches(pw,memberVO.getPassword());
+	
+		log.error("======================{}",check);
+		
+		
 //		Enumeration<String> names = session.getAttributeNames();
 //		while(names.hasMoreElements()) {
 //			log.error("========={}==========", names.nextElement());

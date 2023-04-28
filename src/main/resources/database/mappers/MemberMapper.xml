@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
  
 <select id="getLogin" parameterType="MemberVO" resultMap ="getLoginResult">
-		SELECT M.USERNAME, M.PASSWORD, M.NAME, M.EMAIL, R.NUM, R.ROLENAME
+		SELECT M.USERNAME, M.PASSWORD, M.NAME, M.EMAIL, R.NUM, R.ROLENAME, M.ENABLED
 		FROM MEMBER M
 			INNER JOIN 
 			MEMBER_ROLE MR
@@ -52,6 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result column="PASSWORD" property="password"/>	
 	<result column="NAME" property="name"/>
 	<result column="EMAIL" property="email"/>
+	<result column="ENABLED" property="enabled"/>	
 		<collection property="roleVOs" javaType="List" ofType="RoleVO">
 			<id column="NUM" property="num"/>
 			<result column="ROLENAME" property="roleName"/>
