@@ -35,6 +35,8 @@
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
                                 <form id="contactForm" action="./login" method="post" enctype="multipart/form-data">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                
                                     <!-- Title input-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="username" name="username" value="${cookie.remember.value}" type="text" placeholder="Enter userName..." data-sb-validations="required" />
@@ -56,10 +58,18 @@
                                     
                                                            
                                     <!-- Submit Button-->
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button></div>
-                                </form>
+                                    <div class="d-grid">
+                                    	<button class="btn btn-primary btn-lg mb-3" id="submitButton" type="submit" style="height: 100%;">Submit</button>
+			                               <a href="/oauth2/authorization/kakao" >
+			                               		<img src="/images/kakao_login_large_wide.png"style="width: 100%;" >
+			                               </a>
+                                    	</div>
+                                </form> 
+                                                              
                                <br>
-                                <a class="text-muted" href="./findPassword">비밀번호 찾기</a>
+                                	<a class="text-muted" href="./findPassword">비밀번호 찾기</a>
+                                <br>
+                                
                                 
                             </div>
                         </div>

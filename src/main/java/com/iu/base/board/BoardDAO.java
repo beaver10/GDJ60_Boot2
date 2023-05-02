@@ -29,6 +29,8 @@ public interface BoardDAO {
 	//글삭제
 	public int setDelete(BoardVO boardVO) throws Exception;
 	
+	public int setFileDelete (Long boardFileNum) throws Exception;
+	 
 	
 	
 }

@@ -57,13 +57,13 @@ public class NoticeService implements BoardService {
 		int result = noticeDAO.setInsert(boardVO);
 		log.error("num : {}", boardVO.getNum());
 		
-		Random random = new Random();
-		int num = random.nextInt(2);
-		
-		
-		if(num == 0) {
-			throw new Exception();
-		}
+//		Random random = new Random();
+//		int num = random.nextInt(2);
+//		
+//		
+//		if(num == 0) {
+//			throw new Exception();
+//		}
 		
 		if(multipartFiles != null) {
 			for(MultipartFile multipartFile : multipartFiles ) {
@@ -91,7 +91,17 @@ public class NoticeService implements BoardService {
 	@Override
 	public int setDelete(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		int result = noticeDAO.setFileDelete(boardVO.getNum());
+		BoardVO num = noticeDAO.getDetail(boardVO);
+		Long getnum = num.getNum();
+		
+		
+		if(getnum!=null) {
+			log.error("파일 있음!!");
+		}
+		
+		
+		return result;
 	}
 	
 	

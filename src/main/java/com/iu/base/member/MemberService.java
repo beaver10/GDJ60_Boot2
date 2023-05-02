@@ -11,6 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -22,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 @Transactional(rollbackFor = Exception.class)
-public class MemberService implements UserDetailsService {
+public class MemberService extends DefaultOAuth2UserService implements UserDetailsService {
 	
 	@Autowired
 	private MemberDAO memberDAO;
@@ -32,6 +36,7 @@ public class MemberService implements UserDetailsService {
 	
 	@Autowired
 	private MailManager mailManager;
+	
 	
 	
 	public int setFindPassword(MemberVO memberVO)throws Exception{

@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.iu.base.member.MemberService;
+import com.iu.base.member.MemberSocialService;
 import com.iu.base.security.UserLoginFailHandler;
 import com.iu.base.security.UserLogoutSuccessHandler;
 import com.iu.base.security.UserSuccessHandler;
@@ -25,6 +27,9 @@ public class SecurityConfig {
 	
 	@Autowired
 	private UserLogoutSuccessHandler userLogoutSuccessHandler;
+	
+	@Autowired
+	private MemberSocialService memberSocialService;
 
 	@Bean
 	WebSecurityCustomizer webSecurityConfig() {
@@ -54,7 +59,7 @@ public class SecurityConfig {
 				//URL과 권한 매칭 
 				.antMatchers("/").permitAll()
 				.antMatchers("/member/join").permitAll()
-				.antMatchers("/notice/add").hasRole("ADMIN")
+				.antMatchers("/notice/add").hasRole("MEMBER")
 				.antMatchers("/notice/update").hasRole("ADMIN")
 				.antMatchers("/notice/delete").hasRole("ADMIN")
 				.antMatchers("/notice/*").permitAll()
@@ -78,7 +83,14 @@ public class SecurityConfig {
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")
 				.permitAll()
+				.and()				
+			.oauth2Login() //Social Login 설정
+				.userInfoEndpoint()
+				.userService(memberSocialService)
 				
+//			.sessionManagement()
+//				.maximumSessions(1) //최대 허용 가능 세션 수, 만약 -1이라면 무한 
+//				.maxSessionsPreventsLogin(true) //false : 이전 사용자 로그아웃 (세션 만료) true : 새로운 사용자 인증 실패
 				;
 		
 		return httpSecurity.build();

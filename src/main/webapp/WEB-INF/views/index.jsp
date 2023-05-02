@@ -44,11 +44,11 @@
                         
                         <!-- message -->
                         <h1>
-                        	<sec:authorize access="isAuthenticated()">로그인 성공 </sec:authorize>
+                        	<sec:authorize access="isAuthenticated()">로그인 성공
+                        	 	<sec:authentication property="name"/>
+                        	  	<spring:message code="loginSuccess" var="msg" text="없는 메세지" arguments="${member.username},${member.getRoleVOs().get(0).getNum()}, ${member.name}" argumentSeparator=","></spring:message>
+                        	 </sec:authorize>
                         	<sec:authorize access="!isAuthenticated()">로그인 안됨 </sec:authorize>
-<%--                         	<c:if test="${not empty member}">
-                        	<spring:message code="loginSuccess" var="msg" text="없는 메세지" arguments="${member.userName},${member.getRoleVOs().get(0).getNum()}, ${member.name}" argumentSeparator=","></spring:message>
-                        	</c:if> --%>
                         </h1>
                         
                         <h2 class="fw-bolder mb-0">${msg}</h2></div>

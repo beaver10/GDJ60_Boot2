@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 		</where>
 	</sql>
+		
 
 	<insert id="setInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
 		INSERT INTO NOTICE (NUM, TITLE, CONTENTS, WRITER, WRITEDATE, HIT)
@@ -38,6 +39,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<delete id="setDelete" parameterType="BoardVO">
 		DELETE FROM NOTICE 
+		WHERE NUM = #{num}
+	</delete>
+	
+	<delete id="setFileDelete" parameterType="BoardFileVO">
+		DELETE FROM NOTICEFILES
 		WHERE NUM = #{num}
 	</delete>
 	
