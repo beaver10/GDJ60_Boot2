@@ -51,7 +51,7 @@ public class MemberVO implements UserDetails, OAuth2User{
 	private List<RoleVO> roleVOs;
 	
 	//OAuth2User의 token 정보 저장 
-	private Map<String, Object> attributes;
+	private Map<String, Object> attribute;
 	
 	
 	

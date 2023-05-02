@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.iu.base.member.MemberService;
 import com.iu.base.member.MemberSocialService;
 import com.iu.base.security.UserLoginFailHandler;
+import com.iu.base.security.UserLogoutHandler;
 import com.iu.base.security.UserLogoutSuccessHandler;
 import com.iu.base.security.UserSuccessHandler;
 
@@ -30,6 +31,9 @@ public class SecurityConfig {
 	
 	@Autowired
 	private MemberSocialService memberSocialService;
+	
+	@Autowired
+	private UserLogoutHandler userLogoutHandler;
 
 	@Bean
 	WebSecurityCustomizer webSecurityConfig() {
@@ -79,6 +83,7 @@ public class SecurityConfig {
 			.logout()
 				.logoutUrl("/member/logout")
 //				.logoutSuccessUrl("/")
+//				.addLogoutHandler(userLogoutHandler)
 				.logoutSuccessHandler(userLogoutSuccessHandler)
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")

@@ -60,13 +60,17 @@ public class MemberController {
 	private void kakaoDelete(MemberVO memberVO) {
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "KakaoAK" + "adminKey");
+		headers.add("Authorization", "KakaoAK " + adminKey);
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("target_id_type", "user_id");
-		params.add("target_id", memberVO.getAttributes().get("id").toString());
-		HttpEntity<MultiValueMap<String, String>> req = new HttpEntity<>(params);
+		log.error("delete {}::", params);
+
+		params.add("target_id", memberVO.getAttribute().get("id").toString());
+		log.error("delete {}::", memberVO.getAttribute().get("id").toString());
+
+		HttpEntity<MultiValueMap<String, String>> req = new HttpEntity<>(params,headers);
 		
 		String id = restTemplate.postForObject("https://kapi.kakao.com/v1/user/unlink", req, String.class);
 		log.error("delete {}::", id);
@@ -180,7 +184,7 @@ public class MemberController {
 //	}
 //	
 	
-//	@GetMapping("logout")
+//	@GetMapping("socialLogout")
 //	public ModelAndView getLogout(HttpSession session) throws Exception{
 //		ModelAndView mv = new ModelAndView();
 //		
